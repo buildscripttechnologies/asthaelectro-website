@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Aastha Electro | Global PCB Design Agency</title>
+    <title>Astha Electronics Solution | PCB Design Agency</title>
     <meta
       name="description"
-      content="Aastha Electro is a PCB design agency delivering world-class schematic capture, high-speed layout, RF design, DFM and production-ready documentation."
+      content="Astha Electronics Solution — a premium PCB design agency delivering schematic capture, high-speed layout, RF engineering, and production-ready documentation for mission-critical electronics."
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -14,165 +14,691 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="assets/css/styles.css" />
   </head>
   <body>
+    <!-- Background layers -->
     <div class="bg-grid" aria-hidden="true"></div>
     <div class="bg-noise" aria-hidden="true"></div>
-    <div class="mesh mesh-a" aria-hidden="true"></div>
-    <div class="mesh mesh-b" aria-hidden="true"></div>
+    <div class="blob blob-a" aria-hidden="true"></div>
+    <div class="blob blob-b" aria-hidden="true"></div>
+    <div class="blob blob-c" aria-hidden="true"></div>
 
-    <header class="site-header" id="home">
-      <nav class="nav container">
-        <a href="#home" class="brand">Aastha<span>Electro</span></a>
-        <div class="nav-links">
-          <a href="#services">Services</a>
-          <a href="#process">Process</a>
-          <a href="#projects">Projects</a>
-          <a href="#contact">Contact</a>
+    <!-- Toast notification -->
+    <div class="toast" id="toast" role="alert" aria-live="polite"></div>
+
+    <!-- ============================================================
+         NAVIGATION
+    ============================================================ -->
+    <nav class="nav" id="nav">
+      <div class="nav-inner container">
+        <a href="#home" class="logo-link" aria-label="Astha Electronics Solution — Home">
+          <div class="logo-mark">
+            <span class="logo-aes">AES</span>
+            <svg class="logo-trace" viewBox="0 0 54 10" fill="none" aria-hidden="true">
+              <line x1="0" y1="5" x2="41" y2="5" stroke="#5ef0d0" stroke-width="1.5" stroke-opacity="0.7"/>
+              <circle cx="47" cy="5" r="4" fill="#5ef0d0"/>
+              <circle cx="47" cy="5" r="1.6" fill="#050a1a"/>
+            </svg>
+          </div>
+          <div class="logo-sep" aria-hidden="true"></div>
+          <div class="logo-wordmark">
+            <span class="logo-name">ASTHA</span>
+            <span class="logo-sub">Electronics Solution</span>
+          </div>
+        </a>
+
+        <div class="nav-links" id="nav-links">
+          <a href="#services" class="nav-link">Services</a>
+          <a href="#process" class="nav-link">Process</a>
+          <a href="#projects" class="nav-link">Work</a>
+          <a href="#about" class="nav-link">About</a>
+          <a href="#contact" class="nav-link">Contact</a>
         </div>
-        <a class="btn btn-outline" href="#contact">Start Your PCB Project</a>
-      </nav>
 
-      <section class="hero container">
-        <div class="hero-copy reveal">
-          <p class="eyebrow">Globally Inspired PCB Engineering</p>
-          <h1>Premium PCB Design Agency for High-Performance Electronics.</h1>
-          <p class="hero-subtext">
-            We blend precision engineering with modern product thinking—similar
-            to the polish you see on globally recognized technology brands.
-            From concept to manufacturing files, every layer is built for speed,
-            reliability, and scale.
+        <a href="#contact" class="btn btn-primary nav-cta">Start a Project</a>
+
+        <button class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- ============================================================
+         HERO
+    ============================================================ -->
+    <section class="hero" id="home">
+      <!-- Interactive dot-grid canvas (Linear/Vercel style) -->
+      <canvas id="dot-grid" aria-hidden="true"></canvas>
+
+      <div class="hero-content container">
+        <div class="hero-copy">
+          <p class="eyebrow" data-hero-anim="0">Precision Electronics Engineering</p>
+          <h1 data-hero-anim="1">World-Class PCB Design for High-Performance Electronics</h1>
+          <p class="hero-sub" data-hero-anim="2">
+            From concept schematic to production-ready Gerber files — we engineer
+            every layer for signal integrity, thermal performance, and first-pass
+            manufacturing success.
           </p>
-          <div class="hero-cta">
-            <a href="#services" class="btn">Explore Capabilities</a>
-            <a href="#projects" class="btn btn-ghost">See Case Work</a>
+          <div class="hero-actions" data-hero-anim="3">
+            <a href="#contact" class="btn btn-primary mag-btn">Start Your Project</a>
+            <a href="#projects" class="btn btn-ghost mag-btn">View Case Work</a>
           </div>
-          <div class="hero-badges">
-            <span>High-Speed Digital</span>
-            <span>RF & Mixed Signal</span>
-            <span>DFM / DFA Ready</span>
+          <div class="hero-stats-row" data-hero-anim="4">
+            <div class="hero-stat">
+              <strong>200+</strong>
+              <span>Designs Delivered</span>
+            </div>
+            <div class="hero-stat">
+              <strong>12+</strong>
+              <span>Years Experience</span>
+            </div>
+            <div class="hero-stat">
+              <strong>98%</strong>
+              <span>First-Pass Rate</span>
+            </div>
+          </div>
+          <div class="hero-pills" data-hero-anim="5">
+            <span class="pill">High-Speed Digital</span>
+            <span class="pill">RF &amp; Mixed-Signal</span>
+            <span class="pill">DFM / DFA Ready</span>
+            <span class="pill">Impedance Controlled</span>
           </div>
         </div>
 
-        <div class="hero-visual reveal" aria-hidden="true">
-          <div class="pcb-orbiter">
-            <div class="pcb-board" id="pcb-board">
-              <span class="chip chip-core">SOC</span>
-              <span class="chip chip-rf">RF</span>
-              <span class="chip chip-pwr">PMIC</span>
-              <span class="chip chip-io">I/O</span>
-              <span class="trace t1"></span>
-              <span class="trace t2"></span>
-              <span class="trace t3"></span>
-              <span class="trace t4"></span>
+        <div class="hero-visual" data-hero-anim="6">
+          <div class="pcb-frame">
+            <!-- PCB animation canvas scoped to this panel -->
+            <canvas id="pcb-canvas" aria-hidden="true"></canvas>
+            <div class="pcb-overlay">
+              <div class="pcb-label">Live PCB Simulation</div>
+              <div class="pcb-indicator">
+                <span class="pulse-dot"></span>
+                <span>Signal routing active</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         MARQUEE
+    ============================================================ -->
+    <div class="marquee-wrap" aria-label="Industries served">
+      <div class="marquee-track">
+        <span>Industrial Automation</span>
+        <span class="dot" aria-hidden="true">·</span>
+        <span>Medical Electronics</span>
+        <span class="dot" aria-hidden="true">·</span>
+        <span>Automotive Systems</span>
+        <span class="dot" aria-hidden="true">·</span>
+        <span>IoT Platforms</span>
+        <span class="dot" aria-hidden="true">·</span>
+        <span>Power Electronics</span>
+        <span class="dot" aria-hidden="true">·</span>
+        <span>Consumer Tech</span>
+        <span class="dot" aria-hidden="true">·</span>
+        <span>Aerospace &amp; Defense</span>
+        <span class="dot" aria-hidden="true">·</span>
+        <span>Industrial Automation</span>
+        <span class="dot" aria-hidden="true">·</span>
+        <span>Medical Electronics</span>
+        <span class="dot" aria-hidden="true">·</span>
+        <span>Automotive Systems</span>
+        <span class="dot" aria-hidden="true">·</span>
+        <span>IoT Platforms</span>
+        <span class="dot" aria-hidden="true">·</span>
+        <span>Power Electronics</span>
+        <span class="dot" aria-hidden="true">·</span>
+        <span>Consumer Tech</span>
+        <span class="dot" aria-hidden="true">·</span>
+        <span>Aerospace &amp; Defense</span>
+        <span class="dot" aria-hidden="true">·</span>
+      </div>
+    </div>
+
+    <main>
+
+      <!-- ============================================================
+           STATS
+      ============================================================ -->
+      <section class="section stats-section" id="stats">
+        <div class="container">
+          <div class="stats-grid">
+            <article class="stat-card reveal">
+              <div class="stat-num" data-target="200" data-suffix="+">0</div>
+              <p>PCB programs delivered</p>
+            </article>
+            <article class="stat-card reveal">
+              <div class="stat-num" data-target="12" data-suffix="+">0</div>
+              <p>Years of electronics expertise</p>
+            </article>
+            <article class="stat-card reveal">
+              <div class="stat-num" data-target="30" data-suffix="%">0</div>
+              <p>Avg. prototype cycle reduction</p>
+            </article>
+            <article class="stat-card reveal">
+              <div class="stat-num" data-target="98" data-suffix="%">0</div>
+              <p>First-pass manufacturing success</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           SERVICES
+      ============================================================ -->
+      <section class="section" id="services">
+        <div class="container">
+          <header class="section-head reveal">
+            <p class="eyebrow">Our Services</p>
+            <h2>From Schematic to Production File Package</h2>
+            <p class="section-sub">
+              End-to-end PCB engineering services built around your timeline,
+              compliance requirements, and manufacturing constraints.
+            </p>
+          </header>
+
+          <div class="grid-2">
+            <article class="service-card reveal">
+              <div class="service-icon">
+                <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
+                  <rect x="6" y="6" width="36" height="36" rx="4" stroke="currentColor" stroke-width="2"/>
+                  <circle cx="18" cy="18" r="4" stroke="currentColor" stroke-width="2"/>
+                  <circle cx="30" cy="30" r="4" stroke="currentColor" stroke-width="2"/>
+                  <path d="M22 18h6v12h-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M14 30h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <h3>Schematic Capture &amp; Architecture</h3>
+              <p>Requirement mapping, component strategy, net-class planning, and robust power tree design for reliability from day one.</p>
+              <ul class="service-tags">
+                <li>Power Trees</li>
+                <li>Net Lists</li>
+                <li>BOM Strategy</li>
+              </ul>
+            </article>
+
+            <article class="service-card reveal">
+              <div class="service-icon">
+                <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
+                  <rect x="4" y="12" width="40" height="24" rx="3" stroke="currentColor" stroke-width="2"/>
+                  <path d="M12 24h8M28 24h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  <path d="M20 18v12M28 18v12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  <circle cx="20" cy="24" r="2" fill="currentColor"/>
+                  <circle cx="28" cy="24" r="2" fill="currentColor"/>
+                </svg>
+              </div>
+              <h3>High-Speed PCB Layout</h3>
+              <p>Controlled impedance routing, stack-up optimization, and signal-integrity-aware placement for DDR, USB, PCIe, and beyond.</p>
+              <ul class="service-tags">
+                <li>Impedance Control</li>
+                <li>Signal Integrity</li>
+                <li>DDR / SerDes</li>
+              </ul>
+            </article>
+
+            <article class="service-card reveal">
+              <div class="service-icon">
+                <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
+                  <path d="M24 8C15.16 8 8 15.16 8 24s7.16 16 16 16 16-7.16 16-16S32.84 8 24 8z" stroke="currentColor" stroke-width="2"/>
+                  <path d="M24 8v4M24 36v4M8 24h4M36 24h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  <circle cx="24" cy="24" r="5" stroke="currentColor" stroke-width="2"/>
+                  <path d="M16 16l2.8 2.8M29.2 29.2L32 32M32 16l-2.8 2.8M18.8 29.2L16 32" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <h3>RF &amp; Mixed-Signal Engineering</h3>
+              <p>Noise isolation, ground partitioning, shielding, and antenna layout for Bluetooth, Wi-Fi, cellular, and custom RF front-ends.</p>
+              <ul class="service-tags">
+                <li>Antenna Design</li>
+                <li>EMI Control</li>
+                <li>Ground Splits</li>
+              </ul>
+            </article>
+
+            <article class="service-card reveal">
+              <div class="service-icon">
+                <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
+                  <rect x="8" y="8" width="32" height="32" rx="3" stroke="currentColor" stroke-width="2"/>
+                  <path d="M16 24l6 6 10-12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <h3>Manufacturing-Ready Deliverables</h3>
+              <p>Gerbers, ODB++, IPC-2581, assembly drawings, BOM, pick-and-place files, and fab notes — ready for your contract manufacturer.</p>
+              <ul class="service-tags">
+                <li>Gerber / ODB++</li>
+                <li>Assembly Notes</li>
+                <li>IPC Standards</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           PROCESS
+      ============================================================ -->
+      <section class="section process-section" id="process">
+        <div class="container">
+          <header class="section-head reveal">
+            <p class="eyebrow">Our Process</p>
+            <h2>Disciplined Workflow. Fast Iterations.</h2>
+            <p class="section-sub">A repeatable four-phase process refined across 200+ programs to eliminate rework and accelerate time-to-prototype.</p>
+          </header>
+
+          <div class="process-grid">
+            <article class="process-step reveal">
+              <div class="step-num">01</div>
+              <div class="step-content">
+                <h3>Discovery</h3>
+                <p>Define electrical, mechanical, thermal, and compliance requirements. Agree on stack-up, layer count, and tools.</p>
+              </div>
+            </article>
+            <div class="step-connector" aria-hidden="true"></div>
+            <article class="process-step reveal">
+              <div class="step-num">02</div>
+              <div class="step-content">
+                <h3>Design</h3>
+                <p>Schematic capture, component placement, and routing with mid-design review checkpoints to catch issues early.</p>
+              </div>
+            </article>
+            <div class="step-connector" aria-hidden="true"></div>
+            <article class="process-step reveal">
+              <div class="step-num">03</div>
+              <div class="step-content">
+                <h3>Validation</h3>
+                <p>DRC/ERC clean, signal-integrity simulation, thermal review, manufacturability audit, and risk sign-off.</p>
+              </div>
+            </article>
+            <div class="step-connector" aria-hidden="true"></div>
+            <article class="process-step reveal">
+              <div class="step-num">04</div>
+              <div class="step-content">
+                <h3>Handoff</h3>
+                <p>Full production file package delivered with engineering support through prototype bring-up and board-level debug.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           PROJECTS
+      ============================================================ -->
+      <section class="section" id="projects">
+        <div class="container">
+          <header class="section-head reveal">
+            <p class="eyebrow">Selected Work</p>
+            <h2>Built Across Mission-Critical Industries</h2>
+            <p class="section-sub">A sample of the programs we've engineered — from ruggedized industrial controllers to low-noise medical front-ends.</p>
+          </header>
+
+          <div class="grid-3">
+            <article class="project-card reveal">
+              <div class="project-header">
+                <div class="project-layers">8L</div>
+                <span class="project-tag">Industrial</span>
+              </div>
+              <h3>Industrial Motion Controller</h3>
+              <p>8-layer board with gigabit Ethernet, dual-port CAN-FD, isolated digital I/O, and wide-range input DC-DC. Designed for IEC 61000-4 EMC compliance.</p>
+              <div class="project-stats">
+                <div><strong>12</strong><span>Layer pairs</span></div>
+                <div><strong>1GbE</strong><span>Ethernet</span></div>
+                <div><strong>IEC</strong><span>Compliant</span></div>
+              </div>
+            </article>
+
+            <article class="project-card reveal">
+              <div class="project-header">
+                <div class="project-layers">6L</div>
+                <span class="project-tag">Medical</span>
+              </div>
+              <h3>Medical Sensor Front-End</h3>
+              <p>Low-noise analog signal chain for biosensor acquisition. Strict ground-plane partitioning, isolated supplies, and IPC Class 3 layout requirements.</p>
+              <div class="project-stats">
+                <div><strong>&lt;1µV</strong><span>Input noise</span></div>
+                <div><strong>IPC 3</strong><span>Class</span></div>
+                <div><strong>ISO</strong><span>Isolation</span></div>
+              </div>
+            </article>
+
+            <article class="project-card reveal">
+              <div class="project-header">
+                <div class="project-layers">10L</div>
+                <span class="project-tag">Automotive</span>
+              </div>
+              <h3>EV Battery Management System</h3>
+              <p>High-voltage BMS with cell-balancing, precision coulomb counting, isolated CAN/LIN, and thermal-optimized high-current copper pour routing.</p>
+              <div class="project-stats">
+                <div><strong>100A</strong><span>Peak current</span></div>
+                <div><strong>AEC-Q</strong><span>Components</span></div>
+                <div><strong>FMEA</strong><span>Reviewed</span></div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           ABOUT
+      ============================================================ -->
+      <section class="section about-section" id="about">
+        <div class="container">
+          <div class="about-grid">
+            <div class="about-copy reveal">
+              <p class="eyebrow">About Us</p>
+              <h2>Engineering Excellence, Not Just Deliverables</h2>
+              <p>
+                Astha Electronics Solution was founded on a simple belief: great hardware
+                starts with great PCB design. Over 12+ years we've partnered
+                with startups, mid-size OEMs, and enterprise R&amp;D teams to
+                bring complex electronics to life.
+              </p>
+              <p>
+                Our team combines deep analog and digital expertise with modern
+                EDA tooling — Altium Designer, KiCad, Cadence Allegro — and a
+                disciplined review culture that catches problems before they
+                reach the fab house.
+              </p>
+              <div class="about-values">
+                <div class="value-item">
+                  <div class="value-dot"></div>
+                  <div>
+                    <strong>First-Pass Success</strong>
+                    <p>98% of our boards pass manufacturing review without a spin.</p>
+                  </div>
+                </div>
+                <div class="value-item">
+                  <div class="value-dot"></div>
+                  <div>
+                    <strong>Transparent Communication</strong>
+                    <p>Daily updates, shared version control, and open design reviews.</p>
+                  </div>
+                </div>
+                <div class="value-item">
+                  <div class="value-dot"></div>
+                  <div>
+                    <strong>Tool Agnostic</strong>
+                    <p>We work in your EDA environment or migrate files as needed.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="about-visual reveal" aria-hidden="true">
+              <div class="tool-stack">
+                <div class="tool-badge">Altium Designer</div>
+                <div class="tool-badge">KiCad</div>
+                <div class="tool-badge">Cadence Allegro</div>
+                <div class="tool-badge">OrCAD</div>
+                <div class="tool-badge">HyperLynx SI</div>
+                <div class="tool-badge">SigNoise</div>
+                <div class="tool-badge">ANSYS SIwave</div>
+                <div class="tool-badge">DFM Now!</div>
+              </div>
+              <p class="tool-label">Tools &amp; EDA Platforms We Use</p>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="trusted reveal" aria-label="trust marquee">
-        <div class="trusted-track">
-          <span>Industrial Automation</span>
-          <span>Medical Electronics</span>
-          <span>Automotive Systems</span>
-          <span>IoT Platforms</span>
-          <span>Power Electronics</span>
-          <span>Consumer Tech</span>
-          <span>Industrial Automation</span>
-          <span>Medical Electronics</span>
-          <span>Automotive Systems</span>
-          <span>IoT Platforms</span>
-          <span>Power Electronics</span>
-          <span>Consumer Tech</span>
-        </div>
-      </section>
-    </header>
-
-    <main>
-      <section class="stats container reveal" id="stats">
-        <article><h2>200+</h2><p>PCB programs delivered</p></article>
-        <article><h2>12+</h2><p>Years electronics expertise</p></article>
-        <article><h2>30%</h2><p>Average prototyping cycle reduction</p></article>
-        <article><h2>24/7</h2><p>Engineering communication support</p></article>
-      </section>
-
-      <section class="section container" id="services">
-        <div class="section-head reveal">
-          <p class="eyebrow">Services</p>
-          <h2>From Schematic to Production File Package</h2>
-        </div>
-        <div class="grid-2">
-          <article class="glass-card reveal">
-            <h3>Schematic Capture & Architecture</h3>
-            <p>Requirement mapping, part strategy, and robust power tree planning.</p>
-          </article>
-          <article class="glass-card reveal">
-            <h3>High-Speed PCB Layout</h3>
-            <p>Controlled impedance, stack-up optimization, SI-aware routing.</p>
-          </article>
-          <article class="glass-card reveal">
-            <h3>RF / Mixed-Signal Engineering</h3>
-            <p>Noise control, shielding strategy, grounding and partitioning best practices.</p>
-          </article>
-          <article class="glass-card reveal">
-            <h3>Manufacturing-Ready Deliverables</h3>
-            <p>Gerbers, ODB++, drawings, BoM, pick-and-place and fab/assembly notes.</p>
-          </article>
-        </div>
-      </section>
-
-      <section class="section process-wrap" id="process">
+      <!-- ============================================================
+           TESTIMONIALS
+      ============================================================ -->
+      <section class="section testimonials-section" id="testimonials">
         <div class="container">
-          <div class="section-head reveal">
-            <p class="eyebrow">Process</p>
-            <h2>Disciplined Workflow. Fast Iterations.</h2>
-          </div>
-          <div class="timeline">
-            <article class="step reveal"><span>01</span><h3>Discovery</h3><p>Define electrical, mechanical and compliance constraints.</p></article>
-            <article class="step reveal"><span>02</span><h3>Design</h3><p>Schematic + placement + routing with review checkpoints.</p></article>
-            <article class="step reveal"><span>03</span><h3>Validation</h3><p>DRC/ERC, SI checks, manufacturability and risk review.</p></article>
-            <article class="step reveal"><span>04</span><h3>Handoff</h3><p>Production files and support through prototype bring-up.</p></article>
+          <header class="section-head reveal">
+            <p class="eyebrow">Client Feedback</p>
+            <h2>What Our Partners Say</h2>
+          </header>
+
+          <div class="grid-3">
+            <article class="testimonial-card reveal">
+              <div class="stars" aria-label="5 stars">★★★★★</div>
+              <blockquote>
+                "Astha Electronics Solution turned our vague requirements into a
+                first-pass 8-layer board. Their mid-design reviews caught two
+                potential SI issues before they became real problems."
+              </blockquote>
+              <footer>
+                <strong>Rahul Mehta</strong>
+                <span>Head of Hardware, IndustrialTech Pvt. Ltd.</span>
+              </footer>
+            </article>
+
+            <article class="testimonial-card reveal">
+              <div class="stars" aria-label="5 stars">★★★★★</div>
+              <blockquote>
+                "We needed a partner who understood medical-grade layout rules.
+                The AES team delivered a zero-noise analog front-end that passed
+                our EMC pre-compliance on the first attempt."
+              </blockquote>
+              <footer>
+                <strong>Priya Sharma</strong>
+                <span>CTO, MedDevice Innovations</span>
+              </footer>
+            </article>
+
+            <article class="testimonial-card reveal">
+              <div class="stars" aria-label="5 stars">★★★★★</div>
+              <blockquote>
+                "Fast turnaround, thorough DFM notes, and excellent communication
+                throughout. Our EV BMS prototype spun once and went straight
+                into production testing."
+              </blockquote>
+              <footer>
+                <strong>Arjun Patel</strong>
+                <span>Principal Engineer, EVoltage Systems</span>
+              </footer>
+            </article>
           </div>
         </div>
       </section>
 
-      <section class="section container" id="projects">
-        <div class="section-head reveal">
-          <p class="eyebrow">Selected Work</p>
-          <h2>Built Across Mission-Critical Industries</h2>
-        </div>
-        <div class="grid-3">
-          <article class="glass-card reveal"><h3>8-Layer Industrial Controller</h3><p>Ethernet, CAN and isolated IO for rugged environments.</p></article>
-          <article class="glass-card reveal"><h3>Medical Sensor Front-End</h3><p>Low-noise analog signal chain with strict layout partitioning.</p></article>
-          <article class="glass-card reveal"><h3>EV Power Management Board</h3><p>Thermal-optimized high-current routing and reliability focus.</p></article>
+      <!-- ============================================================
+           FAQ
+      ============================================================ -->
+      <section class="section faq-section" id="faq">
+        <div class="container faq-container">
+          <header class="section-head reveal">
+            <p class="eyebrow">FAQ</p>
+            <h2>Frequently Asked Questions</h2>
+          </header>
+
+          <div class="faq-list">
+            <details class="faq-item reveal">
+              <summary class="faq-question">
+                What information do you need to start a project?
+                <span class="faq-icon" aria-hidden="true"></span>
+              </summary>
+              <div class="faq-answer">
+                <p>We typically need a functional/block diagram or initial schematic, mechanical constraints (board outline, connector positions, height limits), layer count preference, target fab house if known, and your estimated quantity for BOM optimization. We'll guide you through a discovery checklist at kickoff.</p>
+              </div>
+            </details>
+
+            <details class="faq-item reveal">
+              <summary class="faq-question">
+                Which EDA tools do you work with?
+                <span class="faq-icon" aria-hidden="true"></span>
+              </summary>
+              <div class="faq-answer">
+                <p>We primarily use Altium Designer and KiCad, with experience in Cadence Allegro and OrCAD. We can deliver native project files or export to your preferred format. File migration between platforms is part of our service offering.</p>
+              </div>
+            </details>
+
+            <details class="faq-item reveal">
+              <summary class="faq-question">
+                How long does a typical PCB design project take?
+                <span class="faq-icon" aria-hidden="true"></span>
+              </summary>
+              <div class="faq-answer">
+                <p>Simple 2–4 layer boards typically complete in 1–2 weeks. Complex 8–16 layer high-speed or RF designs range from 3–6 weeks depending on review cycles and scope changes. We provide a detailed timeline at kickoff and flag risks proactively.</p>
+              </div>
+            </details>
+
+            <details class="faq-item reveal">
+              <summary class="faq-question">
+                Do you provide design files or just manufacturing outputs?
+                <span class="faq-icon" aria-hidden="true"></span>
+              </summary>
+              <div class="faq-answer">
+                <p>You receive everything: native EDA project files (schematics, PCB layout), manufacturing outputs (Gerbers, ODB++, IPC-2581), BOM, assembly drawings, and pick-and-place files. All intellectual property is fully transferred to you upon project completion.</p>
+              </div>
+            </details>
+
+            <details class="faq-item reveal">
+              <summary class="faq-question">
+                Can you help with prototype bring-up and debugging?
+                <span class="faq-icon" aria-hidden="true"></span>
+              </summary>
+              <div class="faq-answer">
+                <p>Yes. We offer post-handoff engineering support including bring-up assistance, schematic review against measured behavior, and revision planning if issues are found during prototype testing.</p>
+              </div>
+            </details>
+
+            <details class="faq-item reveal">
+              <summary class="faq-question">
+                Do you work with overseas or international clients?
+                <span class="faq-icon" aria-hidden="true"></span>
+              </summary>
+              <div class="faq-answer">
+                <p>Absolutely. We work with clients worldwide. All communication, file exchange, and reviews happen over video calls, shared cloud drives, and project management tools convenient for your time zone and workflow.</p>
+              </div>
+            </details>
+          </div>
         </div>
       </section>
 
-      <section class="section container" id="contact">
-        <div class="contact-card reveal">
-          <div>
-            <p class="eyebrow">Let’s Build</p>
-            <h2>Need a world-class PCB design partner?</h2>
-            <p>
-              Share your requirements. We’ll respond within one business day with
-              a practical engagement plan.
-            </p>
+      <!-- ============================================================
+           CONTACT
+      ============================================================ -->
+      <section class="section contact-section" id="contact">
+        <div class="container">
+          <div class="contact-grid">
+            <div class="contact-copy reveal">
+              <p class="eyebrow">Let's Build Together</p>
+              <h2>Ready to Start Your PCB Project?</h2>
+              <p>Share your requirements and we'll respond within one business day with a practical engagement plan.</p>
+
+              <ul class="contact-perks">
+                <li>
+                  <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="9" stroke="currentColor" stroke-width="1.5"/><path d="M6 10l3 3 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  Free initial consultation
+                </li>
+                <li>
+                  <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="9" stroke="currentColor" stroke-width="1.5"/><path d="M6 10l3 3 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  NDA available on request
+                </li>
+                <li>
+                  <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="9" stroke="currentColor" stroke-width="1.5"/><path d="M6 10l3 3 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  Fixed-price or T&amp;M engagements
+                </li>
+                <li>
+                  <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="9" stroke="currentColor" stroke-width="1.5"/><path d="M6 10l3 3 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  All IP transferred on completion
+                </li>
+              </ul>
+            </div>
+
+            <form class="contact-form reveal" id="contact-form" novalidate>
+              <div class="form-row">
+                <div class="form-field">
+                  <label for="name">Full Name <span class="required">*</span></label>
+                  <input type="text" id="name" name="name" placeholder="Jane Smith" autocomplete="name" required />
+                  <span class="field-error" id="name-error" role="alert"></span>
+                </div>
+                <div class="form-field">
+                  <label for="email">Email Address <span class="required">*</span></label>
+                  <input type="email" id="email" name="email" placeholder="jane@company.com" autocomplete="email" required />
+                  <span class="field-error" id="email-error" role="alert"></span>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-field">
+                  <label for="company">Company</label>
+                  <input type="text" id="company" name="company" placeholder="Company name (optional)" autocomplete="organization" />
+                </div>
+                <div class="form-field">
+                  <label for="project-type">Project Type <span class="required">*</span></label>
+                  <select id="project-type" name="project-type" required>
+                    <option value="" disabled selected>Select a service…</option>
+                    <option value="schematic">Schematic Capture</option>
+                    <option value="layout">PCB Layout</option>
+                    <option value="rf">RF / Mixed-Signal</option>
+                    <option value="manufacturing">Manufacturing Deliverables</option>
+                    <option value="full">Full Design Service</option>
+                    <option value="other">Other / Consultation</option>
+                  </select>
+                  <span class="field-error" id="project-type-error" role="alert"></span>
+                </div>
+              </div>
+
+              <div class="form-field">
+                <label for="message">Project Brief <span class="required">*</span></label>
+                <textarea id="message" name="message" rows="5" placeholder="Describe your project: board complexity, layer count, key interfaces, compliance requirements, and target timeline…" required></textarea>
+                <span class="field-error" id="message-error" role="alert"></span>
+              </div>
+
+              <button class="btn btn-primary submit-btn" type="submit" id="submit-btn">
+                <span class="btn-label">Send Inquiry</span>
+                <span class="btn-spinner" aria-hidden="true"></span>
+              </button>
+            </form>
           </div>
-          <form class="contact-form">
-            <input type="text" placeholder="Your Name" required />
-            <input type="email" placeholder="Your Email" required />
-            <textarea rows="4" placeholder="Project Brief"></textarea>
-            <button class="btn" type="submit">Send Inquiry</button>
-          </form>
         </div>
       </section>
+
     </main>
 
-    <footer class="footer container">
-      <p>© <span id="year"></span> Aastha Electro. Crafted for modern electronics teams.</p>
+    <!-- ============================================================
+         FOOTER
+    ============================================================ -->
+    <footer class="footer">
+      <div class="container footer-inner">
+        <div class="footer-brand">
+          <a href="#home" class="logo-link logo-link--footer" aria-label="Astha Electronics Solution — Home">
+            <div class="logo-mark">
+              <span class="logo-aes">AES</span>
+              <svg class="logo-trace" viewBox="0 0 54 10" fill="none" aria-hidden="true">
+                <line x1="0" y1="5" x2="41" y2="5" stroke="#5ef0d0" stroke-width="1.5" stroke-opacity="0.7"/>
+                <circle cx="47" cy="5" r="4" fill="#5ef0d0"/>
+                <circle cx="47" cy="5" r="1.6" fill="#050a1a"/>
+              </svg>
+            </div>
+            <div class="logo-sep" aria-hidden="true"></div>
+            <div class="logo-wordmark">
+              <span class="logo-name">ASTHA</span>
+              <span class="logo-sub">Electronics Solution</span>
+            </div>
+          </a>
+          <p>Premium PCB design for teams that demand first-pass quality.</p>
+        </div>
+        <nav class="footer-links" aria-label="Footer navigation">
+          <a href="#services">Services</a>
+          <a href="#process">Process</a>
+          <a href="#projects">Work</a>
+          <a href="#about">About</a>
+          <a href="#faq">FAQ</a>
+          <a href="#contact">Contact</a>
+        </nav>
+        <p class="footer-copy">
+          &copy; <span id="year"></span> Astha Electronics Solution. All rights reserved.
+        </p>
+        <div class="footer-credit">
+          Designed with <span class="heart" aria-label="love">♥</span> by
+          <a href="https://buildscripttechnologies.com" target="_blank" rel="noopener noreferrer" class="credit-link">
+            <img src="https://buildscripttechnologies.com/assets/images/icon_bs-1753867611029.png"
+                 alt="" class="credit-logo" aria-hidden="true" />
+            BuildScript Technologies Private Limited
+          </a>
+        </div>
+      </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script type="module" src="assets/js/main.js"></script>
   </body>
 </html>
