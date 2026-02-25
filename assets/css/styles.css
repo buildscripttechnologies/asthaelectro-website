@@ -1267,6 +1267,309 @@ input.invalid, select.invalid, textarea.invalid {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
-  .reveal { opacity: 1; transform: none; }
+  .reveal, .reveal-left, .reveal-right, .reveal-scale { opacity: 1; transform: none; }
   [data-hero-anim] { opacity: 1; transform: none; }
+}
+
+/* ----------------------------------------------------------------
+   Scroll Progress Bar
+---------------------------------------------------------------- */
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  transform: scaleX(0);
+  transform-origin: left;
+  z-index: 200;
+  transition: transform 0.1s linear;
+}
+
+/* ----------------------------------------------------------------
+   Nav — hide on scroll-down, active link
+---------------------------------------------------------------- */
+.nav {
+  transition: background 0.3s var(--ease), box-shadow 0.3s var(--ease),
+              transform 0.35s var(--ease);
+}
+.nav.nav-hidden { transform: translateY(-100%); }
+.nav-link.active {
+  color: var(--primary);
+  background: rgba(94, 240, 208, 0.07);
+}
+
+/* ----------------------------------------------------------------
+   Reveal Variants
+---------------------------------------------------------------- */
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-36px);
+  transition: opacity 0.75s var(--ease), transform 0.75s var(--ease);
+}
+.reveal-left.active  { opacity: 1; transform: translateX(0); }
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(36px);
+  transition: opacity 0.75s var(--ease), transform 0.75s var(--ease);
+}
+.reveal-right.active { opacity: 1; transform: translateX(0); }
+
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.92) translateY(16px);
+  transition: opacity 0.65s var(--ease), transform 0.65s var(--ease);
+}
+.reveal-scale.active { opacity: 1; transform: scale(1) translateY(0); }
+
+/* Stagger delays for grids */
+.service-card:nth-child(1), .project-card:nth-child(1), .testimonial-card:nth-child(1) { transition-delay: 0s; }
+.service-card:nth-child(2), .project-card:nth-child(2), .testimonial-card:nth-child(2) { transition-delay: 0.11s; }
+.service-card:nth-child(3), .project-card:nth-child(3), .testimonial-card:nth-child(3) { transition-delay: 0.22s; }
+.service-card:nth-child(4)                                                               { transition-delay: 0.33s; }
+
+/* Process steps stagger (connectors are even children) */
+.process-step:nth-child(1) { transition-delay: 0s; }
+.process-step:nth-child(3) { transition-delay: 0.14s; }
+.process-step:nth-child(5) { transition-delay: 0.28s; }
+.process-step:nth-child(7) { transition-delay: 0.42s; }
+
+/* ----------------------------------------------------------------
+   Service Icon — animated entrance + hover glow
+---------------------------------------------------------------- */
+.service-icon {
+  transition: transform 0.3s var(--ease), filter 0.3s var(--ease);
+}
+.service-card:hover .service-icon {
+  transform: scale(1.12) translateY(-2px);
+  filter: drop-shadow(0 0 10px rgba(94, 240, 208, 0.45));
+}
+.service-card.active .service-icon {
+  animation: iconPop 0.55s var(--ease) both;
+}
+@keyframes iconPop {
+  0%   { transform: scale(0.4); opacity: 0; }
+  70%  { transform: scale(1.12); opacity: 1; }
+  100% { transform: scale(1);   opacity: 1; }
+}
+
+/* ----------------------------------------------------------------
+   Process — connector draw animation
+---------------------------------------------------------------- */
+.step-connector {
+  transform-origin: left;
+  transform: scaleX(0);
+  transition: transform 0.6s var(--ease) 0.25s;
+}
+.step-connector.active { transform: scaleX(1); }
+
+/* Step number glow on hover */
+.process-step:hover .step-num {
+  color: var(--primary);
+  text-shadow: 0 0 20px rgba(94, 240, 208, 0.35);
+  transition: color 0.25s, text-shadow 0.25s;
+}
+
+/* ----------------------------------------------------------------
+   Tool Badges — staggered float-in when parent becomes active
+---------------------------------------------------------------- */
+.tool-badge {
+  opacity: 0;
+  transform: translateY(14px) scale(0.95);
+  transition:
+    opacity 0.5s var(--ease),
+    transform 0.5s var(--ease),
+    transition-delay calc(var(--i, 0) * 0.07s),
+    border-color 0.22s,
+    color 0.22s,
+    box-shadow 0.22s;
+  transition-delay: calc(var(--i, 0) * 0.07s);
+}
+.about-visual.active .tool-badge {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* ----------------------------------------------------------------
+   Value dot — subtle pulse
+---------------------------------------------------------------- */
+.value-dot {
+  animation: valuePulse 3s ease-in-out infinite;
+}
+@keyframes valuePulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(94, 240, 208, 0.4); }
+  50%       { box-shadow: 0 0 0 8px rgba(94, 240, 208, 0); }
+}
+
+/* ----------------------------------------------------------------
+   Stats card — accent left border on hover
+---------------------------------------------------------------- */
+.stat-card {
+  border-left: 3px solid transparent;
+  transition: border-color 0.25s var(--ease), border-left-color 0.25s var(--ease),
+              transform 0.25s var(--ease);
+}
+.stat-card:hover {
+  border-left-color: var(--primary);
+}
+.stat-card.active .stat-num {
+  animation: numPop 0.6s var(--ease) both;
+}
+@keyframes numPop {
+  0%   { transform: scale(0.8); opacity: 0; }
+  70%  { transform: scale(1.06); }
+  100% { transform: scale(1);   opacity: 1; }
+}
+
+/* ----------------------------------------------------------------
+   FAQ — smooth content expand (grid-template-rows trick)
+---------------------------------------------------------------- */
+.faq-answer {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.35s var(--ease), padding 0.35s var(--ease);
+  padding: 0 1.4rem;
+  overflow: hidden;
+}
+.faq-answer > p { overflow: hidden; }
+.faq-item[open] .faq-answer {
+  grid-template-rows: 1fr;
+  padding-bottom: 1.2rem;
+}
+
+/* ----------------------------------------------------------------
+   Contact perks — stagger on scroll
+---------------------------------------------------------------- */
+.contact-perks li {
+  opacity: 0;
+  transform: translateX(-16px);
+  transition: opacity 0.5s var(--ease), transform 0.5s var(--ease);
+}
+.contact-copy.active .contact-perks li:nth-child(1) { opacity: 1; transform: none; transition-delay: 0.15s; }
+.contact-copy.active .contact-perks li:nth-child(2) { opacity: 1; transform: none; transition-delay: 0.26s; }
+.contact-copy.active .contact-perks li:nth-child(3) { opacity: 1; transform: none; transition-delay: 0.37s; }
+.contact-copy.active .contact-perks li:nth-child(4) { opacity: 1; transform: none; transition-delay: 0.48s; }
+
+/* ----------------------------------------------------------------
+   Footer social links
+---------------------------------------------------------------- */
+.footer-social {
+  display: flex;
+  gap: 0.55rem;
+  margin-top: 0.9rem;
+}
+.footer-social a {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  text-decoration: none;
+  transition: border-color 0.2s, color 0.2s, background 0.2s, transform 0.2s;
+}
+.footer-social a:hover {
+  border-color: var(--line-hover);
+  color: var(--primary);
+  background: rgba(94, 240, 208, 0.06);
+  transform: translateY(-2px);
+}
+.footer-social svg { width: 15px; height: 15px; }
+
+/* ----------------------------------------------------------------
+   Back to Top Button
+---------------------------------------------------------------- */
+#back-to-top {
+  position: fixed;
+  bottom: 5.5rem;
+  right: 1.5rem;
+  z-index: 80;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(10, 22, 55, 0.88);
+  border: 1px solid var(--line-hover);
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(12px);
+  pointer-events: none;
+  backdrop-filter: blur(12px);
+  transition: opacity 0.3s var(--ease), transform 0.3s var(--ease), box-shadow 0.25s;
+}
+#back-to-top.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+#back-to-top:hover {
+  box-shadow: 0 0 20px rgba(94, 240, 208, 0.3);
+  background: rgba(14, 30, 70, 0.95);
+}
+
+/* ----------------------------------------------------------------
+   Floating WhatsApp Button
+---------------------------------------------------------------- */
+.float-whatsapp {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 80;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #25d366;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 22px rgba(37, 211, 102, 0.38);
+  text-decoration: none;
+  transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+  animation: waFloat 3.5s ease-in-out infinite;
+}
+.float-whatsapp:hover {
+  transform: scale(1.1);
+  box-shadow: 0 8px 32px rgba(37, 211, 102, 0.55);
+  animation: none;
+}
+.float-whatsapp svg {
+  width: 28px;
+  height: 28px;
+  color: #fff;
+  fill: #fff;
+}
+@keyframes waFloat {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-5px); }
+}
+
+/* ----------------------------------------------------------------
+   Section heading — teal left accent
+---------------------------------------------------------------- */
+.section-head .eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 2px;
+  background: var(--primary);
+  border-radius: 2px;
+  vertical-align: middle;
+  margin-right: 0.5rem;
+  margin-bottom: 1px;
+}
+
+/* ----------------------------------------------------------------
+   Project card — tilt utility (JS sets inline transform)
+---------------------------------------------------------------- */
+.project-card,
+.service-card {
+  will-change: transform;
+  transform-style: preserve-3d;
 }

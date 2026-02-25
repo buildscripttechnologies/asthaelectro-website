@@ -7,21 +7,31 @@ import { initPCBCanvas }       from './modules/pcb-canvas.js';
 import { initHeroAnimation }   from './modules/hero-animation.js';
 import { initMagneticButtons } from './modules/magnetic-buttons.js';
 import { initNav }             from './modules/nav.js';
+import { initNavHide }         from './modules/nav-hide.js';
+import { initScrollProgress }  from './modules/scroll-progress.js';
+import { initActiveNav }       from './modules/active-nav.js';
 import { initReveal }          from './modules/reveal.js';
 import { initCounters }        from './modules/counters.js';
 import { initFAQ }             from './modules/faq.js';
 import { initContactForm }     from './modules/contact-form.js';
+import { initTilt }            from './modules/tilt.js';
+import { initBackToTop }       from './modules/back-to-top.js';
 
 document.addEventListener('DOMContentLoaded', () => {
+  initScrollProgress();
   initDotGrid();
   initHeroAnimation();
   initPCBCanvas();
   initMagneticButtons();
   initNav();
+  initNavHide();
+  initActiveNav();
   initReveal();
   initCounters();
   initFAQ();
   initContactForm();
+  initTilt();
+  initBackToTop();
   initYear();
 });
 
