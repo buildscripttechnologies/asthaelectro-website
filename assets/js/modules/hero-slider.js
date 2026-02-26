@@ -96,6 +96,9 @@ export function initHeroSlider() {
 
     /* Sync CSS progress-fill interval */
     dots.forEach(dot => dot.style.setProperty('--slider-interval', `${INTERVAL}ms`));
+
+    /* Notify PCB canvas to switch scene */
+    window.dispatchEvent(new CustomEvent('hero-slide-change', { detail: { index: n } }));
   }
 
   function next() { goTo((current + 1) % slides.length); }
@@ -159,4 +162,7 @@ export function initHeroSlider() {
   /* Animate first slide in */
   revealChildren(slides[0]);
   startTimer();
+
+  /* Tell PCB canvas we're on slide 0 */
+  window.dispatchEvent(new CustomEvent('hero-slide-change', { detail: { index: 0 } }));
 }
