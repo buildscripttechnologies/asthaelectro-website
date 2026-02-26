@@ -4,6 +4,7 @@
 ================================================================ */
 import { initDotGrid }         from './modules/dot-grid.js';
 import { initPCBCanvas }       from './modules/pcb-canvas.js';
+import { initPCBBackground }   from './modules/pcb-bg-canvas.js';
 import { initHeroAnimation }   from './modules/hero-animation.js';
 import { initMagneticButtons } from './modules/magnetic-buttons.js';
 import { initNav }             from './modules/nav.js';
@@ -19,6 +20,7 @@ import { initBackToTop }       from './modules/back-to-top.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   initScrollProgress();
+  initPCBBackground();
   initDotGrid();
   initHeroAnimation();
   initPCBCanvas();

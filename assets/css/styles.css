@@ -1381,7 +1381,6 @@ input.invalid, select.invalid, textarea.invalid {
   transition:
     opacity 0.5s var(--ease),
     transform 0.5s var(--ease),
-    transition-delay calc(var(--i, 0) * 0.07s),
     border-color 0.22s,
     color 0.22s,
     box-shadow 0.22s;
@@ -1427,13 +1426,16 @@ input.invalid, select.invalid, textarea.invalid {
    FAQ — smooth content expand (grid-template-rows trick)
 ---------------------------------------------------------------- */
 .faq-answer {
-  display: grid;
+  display: grid !important; /* Override UA display:none on closed <details> */
   grid-template-rows: 0fr;
   transition: grid-template-rows 0.35s var(--ease), padding 0.35s var(--ease);
   padding: 0 1.4rem;
   overflow: hidden;
 }
-.faq-answer > p { overflow: hidden; }
+.faq-answer > p {
+  overflow: hidden;
+  min-height: 0; /* Required for 0fr collapse to work */
+}
 .faq-item[open] .faq-answer {
   grid-template-rows: 1fr;
   padding-bottom: 1.2rem;
@@ -1567,9 +1569,163 @@ input.invalid, select.invalid, textarea.invalid {
 
 /* ----------------------------------------------------------------
    Project card — tilt utility (JS sets inline transform)
+   overflow:hidden required for scan-line ::before effect
 ---------------------------------------------------------------- */
 .project-card,
 .service-card {
+  position: relative;
+  overflow: hidden;
   will-change: transform;
-  transform-style: preserve-3d;
 }
+
+/* ----------------------------------------------------------------
+   PCB Background Canvas
+---------------------------------------------------------------- */
+#pcb-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* ----------------------------------------------------------------
+   Card Hover — PCB Scan Line Sweep + Corner Fiducial Marks
+---------------------------------------------------------------- */
+
+/* Scan line — sweeps from top to bottom on hover */
+.service-card::before,
+.project-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(94, 240, 208, 0.7) 40%,
+    rgba(94, 240, 208, 0.9) 50%,
+    rgba(94, 240, 208, 0.7) 60%,
+    transparent 100%);
+  top: -2px;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+.service-card:hover::before,
+.project-card:hover::before {
+  opacity: 1;
+  animation: cardScanDown 0.55s ease-out forwards;
+}
+@keyframes cardScanDown {
+  from { top: -2px; opacity: 1; }
+  85%  { opacity: 1; }
+  to   { top: 105%; opacity: 0; }
+}
+
+/* PCB corner fiducial mark — top-right corner */
+.service-card::after,
+.project-card::after {
+  content: '';
+  position: absolute;
+  top: 9px;
+  right: 9px;
+  width: 11px;
+  height: 11px;
+  border-top: 1.5px solid rgba(94, 240, 208, 0.2);
+  border-right: 1.5px solid rgba(94, 240, 208, 0.2);
+  pointer-events: none;
+  transition: border-color 0.3s var(--ease), box-shadow 0.3s var(--ease);
+}
+.service-card:hover::after,
+.project-card:hover::after {
+  border-color: rgba(94, 240, 208, 0.75);
+  box-shadow:
+    2px -2px 6px rgba(94, 240, 208, 0.2),
+    2px -2px 16px rgba(94, 240, 208, 0.08);
+}
+
+/* Bottom-left fiducial mark using a nested approach on stat-cards */
+.stat-card {
+  position: relative;
+  overflow: hidden;
+}
+.stat-card::after {
+  content: '';
+  position: absolute;
+  bottom: 9px;
+  left: 9px;
+  width: 9px;
+  height: 9px;
+  border-bottom: 1.5px solid rgba(94, 240, 208, 0.15);
+  border-left: 1.5px solid rgba(94, 240, 208, 0.15);
+  pointer-events: none;
+  transition: border-color 0.3s var(--ease);
+}
+.stat-card:hover::after {
+  border-color: rgba(94, 240, 208, 0.6);
+}
+
+/* ----------------------------------------------------------------
+   Testimonial card — subtle scale-in entrance glow
+---------------------------------------------------------------- */
+.testimonial-card.active {
+  border-color: rgba(94, 240, 208, 0.22);
+}
+
+/* ----------------------------------------------------------------
+   Process step — extra glow on .active
+---------------------------------------------------------------- */
+.process-step.active {
+  box-shadow: 0 0 0 1px rgba(94, 240, 208, 0.12), 0 4px 20px rgba(0,0,0,0.3);
+}
+
+/* ----------------------------------------------------------------
+   Section heading — animated underline on eyebrow
+---------------------------------------------------------------- */
+.section-head.active .eyebrow::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--primary), transparent);
+  border-radius: 2px;
+  margin-top: 4px;
+  animation: eyebrowLine 0.7s var(--ease) 0.3s forwards;
+}
+@keyframes eyebrowLine {
+  from { width: 0; opacity: 0; }
+  to   { width: 48px; opacity: 1; }
+}
+
+/* ----------------------------------------------------------------
+   Service card icon — trace line decoration below icon on hover
+---------------------------------------------------------------- */
+.service-card:hover .service-icon::after {
+  content: '';
+  display: block;
+  width: 32px;
+  height: 1px;
+  background: linear-gradient(90deg, var(--primary), transparent);
+  margin-top: 6px;
+  border-radius: 1px;
+}
+
+/* ----------------------------------------------------------------
+   Hero pills — subtle PCB trace underline
+---------------------------------------------------------------- */
+.pill {
+  position: relative;
+}
+.pill::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 50%;
+  width: 0;
+  height: 1px;
+  background: var(--primary);
+  transform: translateX(-50%);
+  transition: width 0.25s var(--ease);
+}
+.pill:hover::after { width: 60%; }
