@@ -412,7 +412,8 @@ h3 { font-size: 1.1rem; font-weight: 700; }
   transition: opacity 0.65s var(--ease), transform 0.65s var(--ease);
 }
 
-.hero-copy h1 {
+.hero-copy h1,
+.slide-h1 {
   margin-block: 0.6rem 1rem;
   background: linear-gradient(135deg, var(--text) 60%, rgba(94,240,208,0.8) 100%);
   -webkit-background-clip: text;
@@ -1729,3 +1730,143 @@ input.invalid, select.invalid, textarea.invalid {
   transition: width 0.25s var(--ease);
 }
 .pill:hover::after { width: 60%; }
+
+/* ================================================================
+   HERO SLIDER
+================================================================ */
+
+/* ---- Slides wrapper: CSS grid stacking (all slides overlap) ---- */
+.hero-slides-wrapper {
+  display: grid;
+}
+
+.hero-slide {
+  grid-area: 1 / 1;          /* all slides occupy same cell       */
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  opacity: 0;
+  visibility: hidden;
+  /* Fade out when not active */
+  transition: opacity 0.5s ease, visibility 0s linear 0.5s;
+  pointer-events: none;
+}
+
+.hero-slide.active {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.5s ease, visibility 0s;
+  pointer-events: auto;
+}
+
+/* Children start hidden; JS animates them in with inline styles */
+.hero-slide .slide-eyebrow,
+.hero-slide .slide-h1,
+.hero-slide .slide-sub,
+.hero-slide .slide-actions,
+.hero-slide .slide-stats,
+.hero-slide .slide-pills {
+  opacity: 0;
+  transform: translateY(16px);
+}
+
+/* ---- Slider navigation row ---- */
+.hero-slider-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-top: 1.75rem;
+}
+
+/* ---- Segment-style dot indicators ---- */
+.slider-dots {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.slider-dot {
+  width: 32px;
+  height: 3px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s, width 0.25s var(--ease);
+  flex-shrink: 0;
+}
+
+/* Active dot is slightly wider */
+.slider-dot.active {
+  width: 44px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Progress fill that animates over the full slide interval */
+.slider-dot::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--primary);
+  transform: scaleX(0);
+  transform-origin: left;
+  border-radius: inherit;
+  /* No transition on inactive dots */
+  transition: none;
+}
+
+.slider-dot.active::after {
+  transform: scaleX(1);
+  /* Duration synced from JS via --slider-interval custom property */
+  transition: transform var(--slider-interval, 6000ms) linear;
+}
+
+/* ---- Arrow buttons ---- */
+.slider-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  color: var(--muted);
+  background: rgba(255, 255, 255, 0.03);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: border-color 0.2s var(--ease), color 0.2s var(--ease),
+              background 0.2s var(--ease), transform 0.2s var(--ease);
+}
+.slider-arrow:hover {
+  border-color: var(--line-hover);
+  color: var(--primary);
+  background: rgba(94, 240, 208, 0.06);
+}
+.slider-arrow:active { transform: scale(0.92); }
+
+/* ---- Responsive: stack nav below on mobile ---- */
+@media (max-width: 480px) {
+  .hero-slider-nav { margin-top: 1.25rem; gap: 0.5rem; }
+  .slider-dot      { width: 24px; }
+  .slider-dot.active { width: 36px; }
+  .slider-arrow    { width: 30px; height: 30px; }
+}
+
+/* ---- Reduced-motion: skip crossfade, just show instantly ---- */
+@media (prefers-reduced-motion: reduce) {
+  .hero-slide { transition: none; }
+  .slider-dot::after { transition: none !important; }
+  .hero-slide .slide-eyebrow,
+  .hero-slide .slide-h1,
+  .hero-slide .slide-sub,
+  .hero-slide .slide-actions,
+  .hero-slide .slide-stats,
+  .hero-slide .slide-pills {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}

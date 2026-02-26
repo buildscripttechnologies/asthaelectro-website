@@ -76,50 +76,150 @@
     </nav>
 
     <!-- ============================================================
-         HERO
+         HERO — 5-slide carousel
     ============================================================ -->
     <section class="hero" id="home">
-      <!-- Interactive dot-grid canvas (Linear/Vercel style) -->
       <canvas id="dot-grid" aria-hidden="true"></canvas>
 
       <div class="hero-content container">
-        <div class="hero-copy">
-          <p class="eyebrow" data-hero-anim="0">Precision Electronics Engineering</p>
-          <h1 data-hero-anim="1">World-Class PCB Design for High-Performance Electronics</h1>
-          <p class="hero-sub" data-hero-anim="2">
-            From concept schematic to production-ready Gerber files — we engineer
-            every layer for signal integrity, thermal performance, and first-pass
-            manufacturing success.
-          </p>
-          <div class="hero-actions" data-hero-anim="3">
-            <a href="#contact" class="btn btn-primary mag-btn">Start Your Project</a>
-            <a href="#projects" class="btn btn-ghost mag-btn">View Case Work</a>
-          </div>
-          <div class="hero-stats-row" data-hero-anim="4">
-            <div class="hero-stat">
-              <strong>200+</strong>
-              <span>Designs Delivered</span>
-            </div>
-            <div class="hero-stat">
-              <strong>12+</strong>
-              <span>Years Experience</span>
-            </div>
-            <div class="hero-stat">
-              <strong>98%</strong>
-              <span>First-Pass Rate</span>
-            </div>
-          </div>
-          <div class="hero-pills" data-hero-anim="5">
-            <span class="pill">High-Speed Digital</span>
-            <span class="pill">RF &amp; Mixed-Signal</span>
-            <span class="pill">DFM / DFA Ready</span>
-            <span class="pill">Impedance Controlled</span>
-          </div>
-        </div>
 
-        <div class="hero-visual" data-hero-anim="6">
+        <!-- LEFT: Slides (only copy changes per slide) -->
+        <div class="hero-copy">
+          <div class="hero-slides-wrapper" aria-live="polite" aria-atomic="false">
+
+            <!-- ── Slide 1: Overview ── -->
+            <div class="hero-slide active" role="group" aria-roledescription="slide" aria-label="Slide 1 of 5">
+              <p class="slide-eyebrow eyebrow">Precision Electronics Engineering</p>
+              <h1 class="slide-h1">World-Class PCB Design<br>for High-Performance Electronics</h1>
+              <p class="slide-sub hero-sub">From concept schematic to production-ready Gerber files — we engineer every layer for signal integrity, thermal performance, and first-pass manufacturing success.</p>
+              <div class="slide-actions hero-actions">
+                <a href="#contact" class="btn btn-primary mag-btn">Start Your Project</a>
+                <a href="#projects" class="btn btn-ghost mag-btn">View Case Work</a>
+              </div>
+              <div class="slide-stats hero-stats-row">
+                <div class="hero-stat"><strong>200+</strong><span>Designs Delivered</span></div>
+                <div class="hero-stat"><strong>12+</strong><span>Years Experience</span></div>
+                <div class="hero-stat"><strong>98%</strong><span>First-Pass Rate</span></div>
+              </div>
+              <div class="slide-pills hero-pills">
+                <span class="pill">High-Speed Digital</span>
+                <span class="pill">RF &amp; Mixed-Signal</span>
+                <span class="pill">DFM / DFA Ready</span>
+                <span class="pill">Impedance Controlled</span>
+              </div>
+            </div>
+
+            <!-- ── Slide 2: Schematic Capture ── -->
+            <div class="hero-slide" role="group" aria-roledescription="slide" aria-label="Slide 2 of 5">
+              <p class="slide-eyebrow eyebrow">Schematic Capture &amp; Architecture</p>
+              <h1 class="slide-h1">Robust Circuit Architecture<br>Built for Reliability from Day One</h1>
+              <p class="slide-sub hero-sub">We translate your functional requirements into a precise electrical architecture — power trees, net classes, and component strategy — before the first trace is ever routed.</p>
+              <div class="slide-actions hero-actions">
+                <a href="#contact" class="btn btn-primary mag-btn">Get a Quote</a>
+                <a href="#process" class="btn btn-ghost mag-btn">See Our Process</a>
+              </div>
+              <div class="slide-stats hero-stats-row">
+                <div class="hero-stat"><strong>500+</strong><span>Schematics Captured</span></div>
+                <div class="hero-stat"><strong>100%</strong><span>DRC / ERC Clean</span></div>
+                <div class="hero-stat"><strong>48hr</strong><span>Review Turnaround</span></div>
+              </div>
+              <div class="slide-pills hero-pills">
+                <span class="pill">Power Trees</span>
+                <span class="pill">Net Lists</span>
+                <span class="pill">BOM Strategy</span>
+                <span class="pill">EDA Migration</span>
+              </div>
+            </div>
+
+            <!-- ── Slide 3: High-Speed Layout ── -->
+            <div class="hero-slide" role="group" aria-roledescription="slide" aria-label="Slide 3 of 5">
+              <p class="slide-eyebrow eyebrow">High-Speed PCB Layout</p>
+              <h1 class="slide-h1">Controlled Impedance Routing<br>for DDR5, USB4 &amp; PCIe Gen5</h1>
+              <p class="slide-sub hero-sub">Stack-up optimised for your target fab, SI-aware component placement, and length-matched differential pairs — every layer, every net, engineered with precision.</p>
+              <div class="slide-actions hero-actions">
+                <a href="#contact" class="btn btn-primary mag-btn">Start Layout</a>
+                <a href="#services" class="btn btn-ghost mag-btn">Explore Services</a>
+              </div>
+              <div class="slide-stats hero-stats-row">
+                <div class="hero-stat"><strong>16L</strong><span>Max Layer Count</span></div>
+                <div class="hero-stat"><strong>12+</strong><span>Years SI Expertise</span></div>
+                <div class="hero-stat"><strong>100%</strong><span>SI Pass Rate</span></div>
+              </div>
+              <div class="slide-pills hero-pills">
+                <span class="pill">DDR / SerDes</span>
+                <span class="pill">Impedance Control</span>
+                <span class="pill">Signal Integrity</span>
+                <span class="pill">Multi-Layer</span>
+              </div>
+            </div>
+
+            <!-- ── Slide 4: RF & Mixed-Signal ── -->
+            <div class="hero-slide" role="group" aria-roledescription="slide" aria-label="Slide 4 of 5">
+              <p class="slide-eyebrow eyebrow">RF &amp; Mixed-Signal Engineering</p>
+              <h1 class="slide-h1">Antenna Design to EMI Compliance —<br>RF Layouts That Perform</h1>
+              <p class="slide-sub hero-sub">Noise isolation, ground partitioning, shielding design, and precision antenna placement for Bluetooth, Wi-Fi 6E, 5G cellular, and custom RF front-ends.</p>
+              <div class="slide-actions hero-actions">
+                <a href="#contact" class="btn btn-primary mag-btn">Discuss Your RF</a>
+                <a href="#projects" class="btn btn-ghost mag-btn">View RF Projects</a>
+              </div>
+              <div class="slide-stats hero-stats-row">
+                <div class="hero-stat"><strong>50+</strong><span>RF Boards Designed</span></div>
+                <div class="hero-stat"><strong>6GHz+</strong><span>Frequency Range</span></div>
+                <div class="hero-stat"><strong>99%</strong><span>EMC Pre-Comp Pass</span></div>
+              </div>
+              <div class="slide-pills hero-pills">
+                <span class="pill">Antenna Design</span>
+                <span class="pill">EMI / EMC</span>
+                <span class="pill">Ground Splits</span>
+                <span class="pill">RF Front-Ends</span>
+              </div>
+            </div>
+
+            <!-- ── Slide 5: Manufacturing Deliverables ── -->
+            <div class="hero-slide" role="group" aria-roledescription="slide" aria-label="Slide 5 of 5">
+              <p class="slide-eyebrow eyebrow">Production-Ready Deliverables</p>
+              <h1 class="slide-h1">From Layout File to Factory Floor —<br>Complete Fabrication Package</h1>
+              <p class="slide-sub hero-sub">Gerbers, ODB++, IPC-2581, BOM, pick-and-place, assembly drawings, and fab notes — every output your CM needs, reviewed and risk-assessed before handoff.</p>
+              <div class="slide-actions hero-actions">
+                <a href="#contact" class="btn btn-primary mag-btn">Start a Project</a>
+                <a href="#contact" class="btn btn-ghost mag-btn">Contact Team</a>
+              </div>
+              <div class="slide-stats hero-stats-row">
+                <div class="hero-stat"><strong>Zero</strong><span>Unplanned Respins</span></div>
+                <div class="hero-stat"><strong>100%</strong><span>Full IP Transfer</span></div>
+                <div class="hero-stat"><strong>1 Day</strong><span>Response Time</span></div>
+              </div>
+              <div class="slide-pills hero-pills">
+                <span class="pill">Gerber / ODB++</span>
+                <span class="pill">Assembly Notes</span>
+                <span class="pill">IPC Standards</span>
+                <span class="pill">DFM Audit</span>
+              </div>
+            </div>
+
+          </div><!-- /.hero-slides-wrapper -->
+
+          <!-- Slider navigation -->
+          <div class="hero-slider-nav" aria-label="Slide navigation">
+            <button class="slider-arrow slider-prev" aria-label="Previous slide">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="16" height="16" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+            </button>
+            <div class="slider-dots" role="tablist">
+              <button class="slider-dot active" role="tab" aria-selected="true"  aria-label="Slide 1 of 5"></button>
+              <button class="slider-dot"        role="tab" aria-selected="false" aria-label="Slide 2 of 5"></button>
+              <button class="slider-dot"        role="tab" aria-selected="false" aria-label="Slide 3 of 5"></button>
+              <button class="slider-dot"        role="tab" aria-selected="false" aria-label="Slide 4 of 5"></button>
+              <button class="slider-dot"        role="tab" aria-selected="false" aria-label="Slide 5 of 5"></button>
+            </div>
+            <button class="slider-arrow slider-next" aria-label="Next slide">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="16" height="16" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+          </div>
+        </div><!-- /.hero-copy -->
+
+        <!-- RIGHT: PCB visual — fixed across all slides -->
+        <div class="hero-visual">
           <div class="pcb-frame">
-            <!-- PCB animation canvas scoped to this panel -->
             <canvas id="pcb-canvas" aria-hidden="true"></canvas>
             <div class="pcb-overlay">
               <div class="pcb-label">Live PCB Simulation</div>
@@ -130,7 +230,8 @@
             </div>
           </div>
         </div>
-      </div>
+
+      </div><!-- /.hero-content -->
     </section>
 
     <!-- ============================================================

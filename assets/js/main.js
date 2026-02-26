@@ -6,6 +6,7 @@ import { initDotGrid }         from './modules/dot-grid.js';
 import { initPCBCanvas }       from './modules/pcb-canvas.js';
 import { initPCBBackground }   from './modules/pcb-bg-canvas.js';
 import { initHeroAnimation }   from './modules/hero-animation.js';
+import { initHeroSlider }     from './modules/hero-slider.js';
 import { initMagneticButtons } from './modules/magnetic-buttons.js';
 import { initNav }             from './modules/nav.js';
 import { initNavHide }         from './modules/nav-hide.js';
@@ -23,6 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initPCBBackground();
   initDotGrid();
   initHeroAnimation();
+  initHeroSlider();
   initPCBCanvas();
   initMagneticButtons();
   initNav();
